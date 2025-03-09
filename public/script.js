@@ -55,3 +55,11 @@ setInterval(() => {
         scoreDisplay.innerText = "কয়েন: " + score;
     }
 }, 500);
+document.addEventListener("DOMContentLoaded", function() {
+    let character = document.getElementById("character");
+    let ghost = document.getElementById("ghost");
+
+    if (!character || !ghost) {
+        console.error("Character or Ghost element missing!");
+    }
+});
