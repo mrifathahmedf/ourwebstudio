@@ -113,43 +113,43 @@
         let jumpHeight = 10;
         let score = 0;
         let speed = 2000;
+        let jumpInterval, fallInterval;
 
-        function jumpStart() {
+        function startJump() {
             if (!isJumping) {
                 isJumping = true;
-                let jumpInterval = setInterval(() => {
+                jumpHeight = 10;
+                jumpInterval = setInterval(() => {
                     if (jumpHeight < 120) {
                         jumpHeight += 5;
                         dino.style.bottom = jumpHeight + "px";
                     }
                 }, 20);
-
-                function jumpEnd() {
-                    clearInterval(jumpInterval);
-                    let fallInterval = setInterval(() => {
-                        if (jumpHeight > 10) {
-                            jumpHeight -= 5;
-                            dino.style.bottom = jumpHeight + "px";
-                        } else {
-                            clearInterval(fallInterval);
-                            isJumping = false;
-                        }
-                    }, 20);
-
-                    document.removeEventListener("keyup", jumpEnd);
-                    touchBtn.removeEventListener("mouseup", jumpEnd);
-                }
-
-                document.addEventListener("keyup", jumpEnd);
-                touchBtn.addEventListener("mouseup", jumpEnd);
             }
         }
 
+        function endJump() {
+            clearInterval(jumpInterval);
+            fallInterval = setInterval(() => {
+                if (jumpHeight > 10) {
+                    jumpHeight -= 5;
+                    dino.style.bottom = jumpHeight + "px";
+                } else {
+                    clearInterval(fallInterval);
+                    isJumping = false;
+                }
+            }, 20);
+        }
+
         document.addEventListener('keydown', function(event) {
-            if (event.code === 'Space') jumpStart();
+            if (event.code === 'Space') startJump();
+        });
+        document.addEventListener('keyup', function(event) {
+            if (event.code === 'Space') endJump();
         });
 
-        touchBtn.addEventListener('mousedown', jumpStart);
+        touchBtn.addEventListener('touchstart', startJump);
+        touchBtn.addEventListener('touchend', endJump);
 
         function moveCactus() {
             cactus.style.left = "100%";
