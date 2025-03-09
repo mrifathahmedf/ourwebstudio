@@ -14,7 +14,8 @@ body {
 
 #game-container {
     position: relative;
-    width: 400px;
+    width: 90%;
+    max-width: 400px;
     height: 500px;
     background: url('jungle-bg.jpg') no-repeat center/cover;
     overflow: hidden;
@@ -46,4 +47,21 @@ body {
     left: 10px;
     color: white;
     font-size: 20px;
+}
+
+/* মোবাইল কন্ট্রোলার */
+#controls {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+button {
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    background: white;
+    cursor: pointer;
 }
