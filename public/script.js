@@ -1,19 +1,17 @@
 let character = document.getElementById("character");
 let ghost = document.getElementById("ghost");
 let scoreDisplay = document.getElementById("score");
+let leftBtn = document.getElementById("left-btn");
+let rightBtn = document.getElementById("right-btn");
+let jumpBtn = document.getElementById("jump-btn");
 
 let score = 0;
 let gameOver = false;
 
-document.addEventListener("keydown", function(event) {
-    if (event.key === "ArrowLeft") {
-        moveLeft();
-    } else if (event.key === "ArrowRight") {
-        moveRight();
-    } else if (event.key === " ") {
-        jump();
-    }
-});
+// মোবাইল কন্ট্রোল
+leftBtn.addEventListener("click", moveLeft);
+rightBtn.addEventListener("click", moveRight);
+jumpBtn.addEventListener("click", jump);
 
 function moveLeft() {
     let left = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
@@ -38,6 +36,7 @@ function jump() {
     }
 }
 
+// ভূত নড়াচড়া করবে
 setInterval(() => {
     let ghostLeft = parseInt(window.getComputedStyle(ghost).getPropertyValue("left"));
     ghost.style.left = (ghostLeft + 5) % 400 + "px";
@@ -49,6 +48,7 @@ setInterval(() => {
     }
 }, 100);
 
+// কয়েন সংগ্রহ
 setInterval(() => {
     if (!gameOver) {
         score += 10;
