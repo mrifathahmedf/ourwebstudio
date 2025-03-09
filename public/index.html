@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ব্যক্তিগত ওয়েবসাইট</title>
+    <style>
+        /* ওয়েবসাইটের ব্যাকগ্রাউন্ড ও মূল স্টাইল */
+        body {
+            background-color: #0a0f25; /* ডিপ ব্লু ডার্ক নাইট */
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 28px;
+        }
+
+        /* Welcome মেসেজ */
+        .welcome-message {
+            background: #1a1f3a;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+        }
+
+        /* ক্যাটাগরি স্টাইল */
+        .category {
+            margin: 20px 0;
+        }
+        .category button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        /* ক্যাটাগরি আলাদা রঙ */
+        .category button:nth-child(1) { background: #ff5733; color: white; } /* Stories */
+        .category button:nth-child(2) { background: #33ff57; color: black; } /* Poetries */
+        .category button:nth-child(3) { background: #5733ff; color: white; } /* Quotes */
+
+        /* সাবক্যাটাগরি */
+        .subcategory {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background: #1a1f3a;
+            border-radius: 5px;
+        }
+
+        /* সোশ্যাল মিডিয়া আইকন */
+        .social-icons {
+            margin-top: 20px;
+        }
+        .social-icons img {
+            width: 40px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Welcome Message -->
+    <div class="welcome-message" id="welcome-message">
+        আসসালামুয়ালাইকুম, ওয়েবসাইটের কাজ চলমান রয়েছে।
+    </div>
+
+    <div class="container">
+        <h1>আমার ব্যক্তিগত ওয়েবসাইট</h1>
+
+        <!-- ক্যাটাগরি -->
+        <div class="category">
+            <button onclick="toggleSubcategory('stories')">Stories</button>
+            <div class="subcategory" id="stories">
+                <p>গল্প ১: এটা একটি গল্প</p>
+                <p>গল্প ২: এটি আরেকটি গল্প</p>
+            </div>
+            
+            <button onclick="toggleSubcategory('poetries')">Poetries</button>
+            <div class="subcategory" id="poetries">
+                <p>কবিতা ১: এটি একটি সুন্দর কবিতা</p>
+                <p>কবিতা ২: এটি আরেকটি সুন্দর কবিতা</p>
+            </div>
+
+            <button onclick="toggleSubcategory('quotes')">Quotes</button>
+            <div class="subcategory" id="quotes">
+                <p>উক্তি ১: জীবন একটি উপহার</p>
+                <p>উক্তি ২: ধৈর্য সবসময় সফলতা আনে</p>
+            </div>
+        </div>
+
+        <!-- সোশ্যাল মিডিয়া আইকন -->
+        <div class="social-icons">
+            <img src="facebook-icon.png" alt="Facebook">
+            <img src="twitter-icon.png" alt="Twitter">
+            <img src="instagram-icon.png" alt="Instagram">
+        </div>
+    </div>
+
+    <script>
+        // Welcome মেসেজ ৫ সেকেন্ড পর হাইড হবে
+        setTimeout(() => {
+            document.getElementById('welcome-message').style.display = 'none';
+        }, 5000);
+
+        // ক্যাটাগরির মধ্যে সাবক্যাটাগরি দেখানোর ও হাইড করার ফাংশন
+        function toggleSubcategory(id) {
+            let element = document.getElementById(id);
+            if (element.style.display === "block") {
+                element.style.display = "none";
+            } else {
+                element.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
