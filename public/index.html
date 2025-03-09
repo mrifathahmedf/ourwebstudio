@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Inner Feelings</title>
+    <style>
+        :root {
+            --primary-bg: #0a1929;
+            --secondary-bg: #152638;
+            --accent-color: #61dafb;
+            --text-primary: #ffffff;
+            --text-secondary: #b3c5d7;
+            --highlight: #ff6b6b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+        
+        .welcome-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(97, 218, 251, 0.5);
+            z-index: 1000;
+            text-align: center;
+            max-width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .welcome-message h2 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        
+        .welcome-message p {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .welcome-message.hide {
+            display: none;
+        }
+        
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .category {
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(97, 218, 251, 0.2);
+        }
+        
+        .category h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        
+        .category p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .category-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--highlight);
+        }
+        
+        .content-section {
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            display: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .content-section h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .content-item {
+            background-color: rgba(21, 38, 56, 0.8);
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .content-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(97, 218, 251, 0.2);
+        }
+        
+        .content-item h4 {
+            color: var(--highlight);
+            margin-bottom: 10px;
+        }
+        
+        .content-detail {
+            display: none;
+            padding: 20px;
+            background-color: rgba(10, 25, 41, 0.9);
+            border-radius: 10px;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .close-btn {
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+        
+        .close-btn:hover {
+            background-color: #4ac0e2;
+        }
+        
+        .back-btn {
+            background-color: var(--highlight);
+            color: var(--text-primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .back-btn:hover {
+            background-color: #ff5252;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .photo-item img {
+            width: 100%;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .photo-item img:hover {
+            transform: scale(1.05);
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .video-item {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--secondary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--accent-color);
+        }
+        
+        .about-text {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid var(--secondary-bg);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--secondary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+        }
+        
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .categories {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .content-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-message" id="welcome">
+        <h2>Welcome to My Inner Feelings</h2>
+        <p>A journey through my thoughts, emotions, and creativity.</p>
+        <p>Explore the various categories to discover more about me.</p>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>My Inner Feelings</h1>
+            <p>Expressing thoughts, emotions, knowledge, and creativity</p>
+        </header>
+
+        <div class="categories">
+            <div class="category" onclick="showSection('stories')">
+                <div class="category-icon">📖</div>
+                <h3>Stories</h3>
+                <p>Expressing emotions through storytelling</p>
+            </div>
+            
+            <div class="category" onclick="showSection('poetries')">
+                <div class="category-icon">🖋️</div>
+                <h3>Poetries</h3>
+                <p>A collection of heartfelt poems</p>
+            </div>
+            
+            <div class="category" onclick="showSection('quotes')">
+                <div class="category-icon">💭</div>
+                <h3>Quotes</h3>
+                <p>Inspirational and thought-provoking quotes</p>
+            </div>
+            
+            <div class="category" onclick="showSection('islamic')">
+                <div class="category-icon">☪️</div>
+                <h3>Islamic Messages</h3>
+                <p>Islamic knowledge and guidance</p>
+            </div>
+            
+            <div class="category" onclick="showSection('knowledge')">
+                <div class="category-icon">🧠</div>
+                <h3>Knowledge Transfer</h3>
+                <p>Educational and informative content</p>
+            </div>
+            
+            <div class="category" onclick="showSection('facts')">
+                <div class="category-icon">❓</div>
+                <h3>Known & Unknown Facts</h3>
+                <p>A collection of fascinating facts</p>
+            </div>
+            
+            <div class="category" onclick="showSection('emotions')">
+                <div class="category-icon">❤️</div>
+                <h3>Feelings of Emotions</h3>
+                <p>Deep insights into human emotions</p>
+            </div>
+            
+            <div class="category" onclick="showSection('smiley')">
+                <div class="category-icon">😊</div>
+                <h3>Smiley Face</h3>
+                <p>Moments of joy and laughter</p>
+            </div>
+            
+            <div class="category" onclick="showSection('photos')">
+                <div class="category-icon">📷</div>
+                <h3>Photos Album</h3>
+                <p>A gallery of cherished memories</p>
+            </div>
+            
+            <div class="category" onclick="showSection('videos')">
+                <div class="category-icon">📹</div>
+                <h3>Videos Album</h3>
+                <p>A collection of engaging video content</p>
+            </div>
+            
+            <div class="category" onclick="showSection('about')">
+                <div class="category-icon">👤</div>
+                <h3>About Me</h3>
+                <p>Personal introduction and insights</p>
+            </div>
+            
+            <div class="category" onclick="showSection('social')">
+                <div class="category-icon">🔗</div>
+                <h3>Social Media</h3>
+                <p>Icons for staying connected</p>
+            </div>
+        </div>
+
+        <!-- Stories Section -->
+        <section id="stories" class="content-section">
+            <h2>Stories</h2>
+            <div class="content-grid">
+                <div class="content-item" onclick="toggleContent('story1')">
+                    <h4>The Midnight Journey</h4>
+                    <p>A story about self-discovery</p>
+                </div>
+                <div class="content-item" onclick="toggleContent('story2')">
+                    <h4>Whispers of the Heart</h4>
+                    <p>A tale of love and longing</p>
+                </div>
+                <div class="content-item" onclick="toggleContent('story3')">
+                    <h4>The Silent Observer</h4>
+                    <p>Reflections on life's quiet moments</p>
+                </div>
+            </div>
+            
+            <div id="story1" class="content-detail">
+                <h3>The Midnight Journey</h3>
+                <p>Under the canvas of a star-studded sky, I embarked on a journey to find myself. The path was dimly lit, with only the moonlight guiding my steps. Each step forward revealed a new aspect of my being, a forgotten memory, or an unacknowledged emotion...</p>
+                <button class="close-btn" onclick="closeContent('story1')">Close</button>
+            </div>
+            
+            <div id="story2" class="content-detail">
+                <h3>Whispers of the Heart</h3>
+                <p>There's a language that only hearts understand, a silent conversation that transcends words. In the quiet moments between heartbeats, feelings flow like a gentle stream, carrying emotions that words often fail to express...</p>
+                <button class="close-btn" onclick="closeContent('story2')">Close</button>
+            </div>
+            
+            <div id="story3" class="content-detail">
+                <h3>The Silent Observer</h3>
+                <p>Sometimes, the most profound insights come from simply observing. In the hustle of daily life, I found peace in becoming the silent observer, watching the world unfold its stories without interruption or judgment...</p>
+                <button class="close-btn" onclick="closeContent('story3')">Close</button>
+            </div>
+            
+            <button class="back-btn" onclick="hideSection('stories')">Back to Categories</button>
+        </section>
+
+        <!-- Poetries Section -->
+        <section id="poetries" class="content-section">
+            <h2>Poetries</h2>
+            <div class="content-grid">
+                <div class="content-item" onclick="toggleContent('poem1')">
+                    <h4>Echoes of Silence</h4>
+                    <p>A poem about finding peace</p>
+                </div>
+                <div class="content-item" onclick="toggleContent('poem2')">
+                    <h4>Midnight Musings</h4>
+                    <p>Reflections under the night sky</p>
+                </div>
+                <div class="content-item" onclick="toggleContent('poem3')">
+                    <h4>Ocean of Emotions</h4>
+                    <p>Navigating through feelings</p>
+                </div>
+            </div>
+            
+            <div id="poem1" class="content-detail">
+                <h3>Echoes of Silence</h3>
+                <p>In the quiet spaces between words,<br>
+                Where thoughts dance like shadows,<br>
+                I found the music of silence,<br>
+                A symphony only the soul can hear.</p>
+                <button class="close-btn" onclick="closeContent('poem1')">Close</button>
+            </div>
+            
+            <div id="poem2" class="content-detail">
+                <h3>Midnight Musings</h3>
+                <p>Stars whisper secrets to the night,<br>
+                As moon paints silver on my window,<br>
+                Thoughts wander through endless galaxies,<br>
+                In this solitude, I find my universe.</p>
+                <button class="close-btn" onclick="closeContent('poem2')">Close</button>
+            </div>
+            
+            <div id="poem3" class="content-detail">
+                <h3>Ocean of Emotions</h3>
+                <p>Wave after wave, feelings crash,<br>
+                Upon the shores of my consciousness,<br>
+                Some gentle like morning tide,<br>
+                Others fierce like storm-tossed seas.<br>
+                Yet in this vast ocean of emotions,<br>
+                I learn to swim, to float, to breathe.</p>
+                <button class="close-btn" onclick="closeContent('poem3')">Close</button>
+            </div>
+            
+            <button class="back-btn" onclick="hideSection('poetries')">Back to Categories</button>
+        </section>
+
+        <!-- Quotes Section -->
+        <section id="quotes" class="content-section">
+            <h2>Quotes</h2>
+            <div class="content-grid">
+                <div class="content-item" onclick="toggleContent('quote1')">
+                    <h4>On Courage</h4>
+                    <p>Finding strength within</p>
+                </div>
+                <div class="content-item" onclick="toggleContent('quote2')">
+                    <h4>On Dreams</h4>
+                    <p>Pursuing your aspirations</p>
+                </div>
+                <div class="content-item" onclick="toggleContent('quote3')">
+                    <h4>On Growth</h4>
+                    <p>Embracing life's lessons</p>
+                </div>
+            </div>
+            
+            <div id="quote1" class="content-detail">
+                <h3>On Courage</h3>
+                <p>"Courage isn't about being fearless; it's about acknowledging your fears and taking that step forward anyway."</p>
+                <button class="close-btn" onclick="closeContent('quote1')">Close</button>
+            </div>
+            
+            <div id="quote2" class="content-detail">
+                <h3>On Dreams</h3>
+                <p>"Dreams are not what you see in sleep; they are the things that don't let you sleep."</p>
+                <button class="close-btn" onclick="closeContent('quote2')">Close</button>
+            </div>
+            
+            <div id="quote3" class="content-detail">
+                <h3>On Growth</h3>
+                <p>"Growth begins at the end of your comfort zone. Embrace discomfort, for that's where transformation happens."</p>
+                <button class="close-btn" onclick="closeContent('quote3')">Close</button>
+            </div>
+            
+            <button class="back-btn" onclick="hideSection('quotes')">Back to Categories</button>
+        </section>
+
+        <!-- Islamic Messages Section -->
+        <section id="islamic" class="content-section">
+            <h2>Islamic Messages</h2>
+            <div class="content-grid">
+                <div class="content-item" onclick="toggleContent('islamic1')">
+                    <h4>Path to Peace</h4>
+                    <p>Finding tranquility in faith</p>
+                </div>
+                <div class="content-item" onclick="toggleContent('islamic2')">
+                    <h4>Words of Wisdom</h4>
+                    <p>Inspirational Islamic quotes</p>
+                </div>
+                <div class="content-item" onclick="toggleContent('islamic3')">
+                    <h4>Daily Reflections</h4>
+</body>
+    </html>
