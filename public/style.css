@@ -1,11 +1,10 @@
-/* Smooth Gradient Background Animation */
+/* Background Animation */
 @keyframes backgroundAnim {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Dark Mode & Background Animation */
 body {
     background: linear-gradient(-45deg, #131b21, #1f2833, #0b0c10);
     background-size: 300% 300%;
@@ -16,7 +15,7 @@ body {
     transition: background 0.5s ease;
 }
 
-/* Dark Mode Button */
+/* Dark Mode Toggle Button */
 .dark-mode-toggle {
     position: fixed;
     top: 20px;
@@ -35,13 +34,9 @@ body {
     background: #dddddd;
 }
 
-/* Dark Mode Styles */
+/* Dark Mode */
 .dark-mode {
     background: linear-gradient(-45deg, #000000, #222222, #111111);
-}
-
-h1 {
-    margin-top: 50px;
 }
 
 /* Flower Container */
@@ -58,7 +53,7 @@ svg {
 /* Flower Initial State */
 .flower-group {
     opacity: 0;
-    transform: scale(0.5);
+    transform: scale(0.2); /* ফুল ছোট শুরু হবে */
 }
 
 /* Stem Animation */
@@ -81,16 +76,21 @@ svg {
     }
 }
 
-/* Bloom Effect */
+/* Bloom Effect (ফুল ধীরে ধীরে বড় হবে) */
 @keyframes bloom {
     0% {
         opacity: 0;
-        transform: scale(0.5);
+        transform: scale(0.2);
     }
     100% {
         opacity: 1;
         transform: scale(1);
     }
+}
+
+/* Flower Group Bloom Animation */
+.flower-group {
+    animation: bloom 3s ease-in-out forwards;
 }
 
 /* Petals Glow Effect on Hover */
