@@ -1,11 +1,9 @@
-const container = document.querySelector('.container');
-const loginLink = document.querySelector('.login-link');
-const registerLink = document.querySelector('.register-link');
+function openLetter() {
+    document.querySelector('.cover').style.transform = "rotateX(180deg)";
+    document.querySelector('.letter').style.opacity = "1";
+}
 
-registerLink.addEventListener('click', () => {
-    container.classList.add('active');
-});
-
-loginLink.addEventListener('click', () => {
-    container.classList.remove('active');
-});
+function closeLetter() {
+    document.querySelector('.cover').style.transform = "rotateX(0deg)";
+    document.querySelector('.letter').style.opacity = "0";
+}
