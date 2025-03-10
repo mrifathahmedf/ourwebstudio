@@ -1,63 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Signup Form</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <title>Your Business</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="form-box login">
-            <form action="#">
-                <h1>Login</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="Username" required>
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Password" required>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-                <div class="remember-forgot">
-                    <label><input type="checkbox"> Remember me</label>
-                    <a href="#">Forgot Password?</a>
-                </div>
-                <button type="submit" class="btn">Login</button>
-                <div class="login-register">
-                    <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
-                </div>
-            </form>
-        </div>
 
-        <div class="form-box register">
-            <form action="#">
-                <h1>Registration</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="Username" required>
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="email" placeholder="Email" required>
-                    <i class='bx bxs-envelope'></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Password" required>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-                <div class="remember-forgot">
-                    <label><input type="checkbox"> I agree to the terms & conditions</label>
-                </div>
-                <button type="submit" class="btn">Register</button>
-                <div class="login-register">
-                    <p>Already have an account? <a href="#" class="login-link">Login</a></p>
-                </div>
-            </form>
-        </div>
-    </div>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h1>Welcome to Our Business</h1>
+        <p>Your one-stop solution for all your needs!</p>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We are a leading business providing top-notch services and products.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Service 1</li>
+            <li>Service 2</li>
+            <li>Service 3</li>
+        </ul>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <h2>Our Products</h2>
+        <p>Explore our range of products designed to meet your needs.</p>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <h2>What Our Customers Say</h2>
+        <p>"Great service!" - Customer 1</p>
+        <p>"Quality products!" - Customer 2</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form action="#">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Your Business. All rights reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
