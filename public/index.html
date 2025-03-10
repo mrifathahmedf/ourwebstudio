@@ -3,106 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine Love Letter</title>
+    <title>Digital Clock</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
         body {
-            background: #f7e6e6;
-            text-align: center;
-            padding: 50px;
-        }
-
-        .envelope {
-            position: relative;
-            width: 200px;
-            height: 150px;
-            background: linear-gradient(135deg, #ff6b6b, #f5a3a2);
-            margin: 50px auto;
-            text-align: center;
-            padding-top: 50px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-        }
-
-        .letter {
-            position: absolute;
-            width: 180px;
-            height: 120px;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: 0.5s;
-            opacity: 0;
-        }
-
-        .envelope:hover .letter {
-            opacity: 1;
-            transform: translateX(-50%) translateY(-10px);
-        }
-
-        .social-links {
-            margin-top: 10px;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            align-items: center;
+            height: 100vh;
+            background: black;
+            margin: 0;
         }
 
-        .social-links a {
-            display: inline-block;
-            transition: 0.3s;
+        .clock {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 80px;
+            color: cyan;
+            text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+            display: flex;
         }
 
-        .social-links img {
-            width: 30px;
-            height: 30px;
-        }
-
-        .social-links a:hover {
-            transform: scale(1.2);
-        }
-
-        footer {
+        .digit {
+            width: 70px;
             text-align: center;
-            background: #222;
-            color: white;
-            padding: 20px;
-            margin-top: 50px;
+            animation: pulse 1s infinite alternate;
+        }
+
+        .separator {
+            width: 30px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes pulse {
+            from { text-shadow: 0 0 5px cyan; }
+            to { text-shadow: 0 0 20px cyan, 0 0 40px cyan; }
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
         }
     </style>
 </head>
 <body>
-
-    <h2>Valentine Love Letter</h2>
-    
-    <div class="envelope">
-        <div class="cover"></div>
-        <div class="letter">
-            <p>Dear Love, <br> Happy Valentine's Day! ❤️</p>
-            <p>Follow me on:</p>
-            <div class="social-links">
-                <a href="https://www.instagram.com/i.only.for.you.now" target="_blank">
-                    <img src="instagram.png" alt="Instagram">
-                </a>
-                <a href="https://www.facebook.com/I.only.for.you.now" target="_blank">
-                    <img src="facebook.png" alt="Facebook">
-                </a>
-            </div>
-        </div>
+    <div class="clock" id="clock">
+        <div class="digit">00</div>
+        <div class="separator">:</div>
+        <div class="digit">00</div>
+        <div class="separator">:</div>
+        <div class="digit">00</div>
     </div>
 
-    <footer>
-        <p>© All rights reserved</p>
-    </footer>
+    <script>
+        function updateClock() {
+            let now = new Date();
+            let hours = String(now.getHours()).padStart(2, '0');
+            let minutes = String(now.getMinutes()).padStart(2, '0');
+            let seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            document.getElementById("clock").innerHTML = `
+                <div class="digit">${hours}</div>
+                <div class="separator">:</div>
+                <div class="digit">${minutes}</div>
+                <div class="separator">:</div>
+                <div class="digit">${seconds}</div>
+            `;
+        }
 
+        setInterval(updateClock, 1000);
+        updateClock(); // প্রথমবার কল করে দিচ্ছি যেন ওয়েট না করতে হয়
+    </script>
 </body>
 </html>
