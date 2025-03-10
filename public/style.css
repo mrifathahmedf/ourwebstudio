@@ -1,0 +1,9 @@
+#clock {
+  font-size: 60px;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;  /* White text */
+  background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff); /* Example gradient */
+  padding: 20px;
+  border-radius: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
