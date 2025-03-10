@@ -1,77 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Clock</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
-
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: black;
-            margin: 0;
-        }
-
-        .clock {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 80px;
-            color: cyan;
-            text-shadow: 0 0 10px cyan, 0 0 20px cyan;
-            display: flex;
-        }
-
-        .digit {
-            width: 70px;
-            text-align: center;
-            animation: pulse 1s infinite alternate;
-        }
-
-        .separator {
-            width: 30px;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes pulse {
-            from { text-shadow: 0 0 5px cyan; }
-            to { text-shadow: 0 0 20px cyan, 0 0 40px cyan; }
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-    </style>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+<title>Digital Clock</title>
+<style>
+  #clock {
+    font-size: 48px;  /* Adjust size as needed */
+    font-family: monospace; /* Use a monospace font for even spacing */
+  }
+</style>
 </head>
 <body>
-    <div class="clock" id="clock">
-        <div class="digit">00</div>
-        <div class="separator">:</div>
-        <div class="digit">00</div>
-        <div class="separator">:</div>
-        <div class="digit">00</div>
-    </div>
-
-    <script>
-        function updateClock() {
-            let now = new Date();
-            let hours = String(now.getHours()).padStart(2, '0');
-            let minutes = String(now.getMinutes()).padStart(2, '0');
-            let seconds = String(now.getSeconds()).padStart(2, '0');
-            
-            document.getElementById("clock").innerHTML = `
-                <div class="digit">${hours}</div>
-                <div class="separator">:</div>
-                <div class="digit">${minutes}</div>
-                <div class="separator">:</div>
-                <div class="digit">${seconds}</div>
-            `;
-        }
-
-        setInterval(updateClock, 1000);
-        updateClock(); // প্রথমবার কল করে দিচ্ছি যেন ওয়েট না করতে হয়
-    </script>
-</body>
+  <div id="clock"></div>
+  <script src="script.js"></script> </body>
 </html>
