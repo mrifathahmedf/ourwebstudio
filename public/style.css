@@ -1,45 +1,69 @@
 body {
+    text-align: center;
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+    background: #f3e5f5;
 }
 
-header {
-    background-color: #333;
-    padding: 10px 0;
+h1 {
+    font-size: 24px;
+    margin-top: 20px;
 }
 
-header nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-}
-
-header nav ul li {
-    margin: 0 15px;
-}
-
-header nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-section {
-    padding: 20px;
-    margin: 20px;
-    background-color: white;
+.envelope {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    margin: 30px auto;
+    background: #ff6f61;
     border-radius: 8px;
+    overflow: hidden;
 }
 
-section h2 {
+.cover {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: #f44336;
+    top: 0;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transition: 0.5s;
+}
+
+.letter {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.letter p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 16px;
     color: #333;
 }
 
-footer {
-    background-color: #333;
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #ff6f61;
+    background: none;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #ff6f61;
     color: white;
-    text-align: center;
-    padding: 10px 0;
 }
