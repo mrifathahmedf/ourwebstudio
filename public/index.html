@@ -1,29 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentine Love Letter</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f7e6e6;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            background: linear-gradient(135deg, #ff6b6b, #f5a3a2);
+            margin: 50px auto;
+            text-align: center;
+            padding-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .letter {
+            position: absolute;
+            width: 180px;
+            height: 120px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .envelope:hover .letter {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px);
+        }
+
+        .social-links {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .social-links img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        footer {
+            text-align: center;
+            background: #222;
+            color: white;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Valentine Love Letter</h1>
-
-    <div class="envelope" id="envelope">
+    <h2>Valentine Love Letter</h2>
+    
+    <div class="envelope">
         <div class="cover"></div>
         <div class="letter">
             <p>Dear Love, <br> Happy Valentine's Day! ❤️</p>
+            <p>Follow me on:</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/i.only.for.you.now" target="_blank">
+                    <img src="instagram.png" alt="Instagram">
+                </a>
+                <a href="https://www.facebook.com/I.only.for.you.now" target="_blank">
+                    <img src="facebook.png" alt="Facebook">
+                </a>
+            </div>
         </div>
     </div>
 
-    <div class="buttons">
-        <button onclick="openLetter()">OPEN</button>
-        <button onclick="closeLetter()">CLOSE</button>
-    </div>
+    <footer>
+        <p>© All rights reserved</p>
+    </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
