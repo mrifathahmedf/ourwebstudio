@@ -1,84 +1,77 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
+<head>
 <link rel="stylesheet" href="style.css">
 <script src="script.js" defer></script>
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>নীলা - Google Gemini AI Chatbot</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #121212; color: white; text-align: center; }
-        .chatbox { width: 90%; max-width: 400px; background: #1e1e1e; padding: 10px; border-radius: 10px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); margin: 20px auto; }
-        .messages { height: 300px; overflow-y: auto; padding: 10px; text-align: left; }
-        .input-box { width: calc(100% - 20px); padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
-        button { padding: 10px 15px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
-        .user { text-align: right; color: #4CAF50; }
-        .bot { text-align: left; color: #f1c40f; }
-    </style>
+    <title>My Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
 
-    <h1>নীলা - তোমার AI বান্ধবী</h1>
-    <div class="chatbox">
-        <div class="messages" id="chat"></div>
-        <input type="text" id="userInput" class="input-box" placeholder="নীলাকে কিছু বলো...">
-        <button onclick="sendMessage()">পাঠাও</button>
-        <button onclick="startListening()">🎙 কথা বলো</button>
+    <header>
+        <h1>Welcome to My Website</h1>
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#stories">Stories</a></li>
+                <li><a href="#poetry">Poetries</a></li>
+                <li><a href="#quotes">Quotes</a></li>
+                <li><a href="#islamic">Islamic Messages</a></li>
+                <li><a href="#knowledge">Knowledge Transfer</a></li>
+                <li><a href="#facts">Known & Unknown Facts</a></li>
+                <li><a href="#emotions">Feelings of Emotions</a></li>
+                <li><a href="#smiley">Smiley Face</a></li>
+                <li><a href="#gallery">Photos Album</a></li>
+                <li><a href="#videos">Videos Album</a></li>
+                <li><a href="#about">About Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>Welcome Message</h2>
+        <p>আমার ওয়েবসাইটে তোমাকে স্বাগতম!</p>
+    </section>
+
+    <section id="stories"><h2>Stories</h2><p>এখানে গল্প থাকবে...</p></section>
+    <section id="poetry"><h2>Poetries</h2><p>এখানে কবিতা থাকবে...</p></section>
+    <section id="quotes"><h2>Quotes</h2><p>এখানে উক্তি থাকবে...</p></section>
+    <section id="islamic"><h2>Islamic Messages</h2><p>এখানে ইসলামিক বার্তা থাকবে...</p></section>
+    <section id="knowledge"><h2>Knowledge Transfer</h2><p>এখানে জ্ঞান বিনিময় সম্পর্কিত তথ্য থাকবে...</p></section>
+    <section id="facts"><h2>Known & Unknown Facts</h2><p>এখানে জানা-অজানা তথ্য থাকবে...</p></section>
+    <section id="emotions"><h2>Feelings of Emotions</h2><p>এখানে আবেগ অনুভূতির কথা থাকবে...</p></section>
+    <section id="smiley"><h2>Smiley Face</h2><p>এখানে বিভিন্ন স্মাইলি ফেস থাকবে...</p></section>
+
+    <section id="gallery">
+        <h2>Photos Album</h2>
+        <img src="https://via.placeholder.com/300" alt="Sample Image" onclick="openModal(this.src)">
+    </section>
+
+    <section id="videos">
+        <h2>Videos Album</h2>
+        <video controls>
+            <source src="sample.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>এখানে নিজের সম্পর্কে তথ্য থাকবে...</p>
+    </section>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
     </div>
 
-    <script>
-        const apiKey = "AIzaSyDQqgQD3-vqEP-ElvgDzCINSBKN3UBJPxg";  // এখানে তোর Google Gemini API Key বসা
-        const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${apiKey}`;
-
-        function sendMessage() {
-            let userText = document.getElementById("userInput").value;
-            if (userText.trim() === "") return;
-
-            let chat = document.getElementById("chat");
-            chat.innerHTML += `<p class="user">তুমি: ${userText}</p>`;
-            document.getElementById("userInput").value = "";
-
-            fetch(apiUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ contents: [{ parts: [{ text: userText }] }] })
-            })
-            .then(response => response.json())
-            .then(data => {
-                let botReply = data.candidates[0]?.content?.parts[0]?.text || "নীলা: আমি বুঝতে পারিনি!";
-                chat.innerHTML += `<p class="bot">নীলা: ${botReply}</p>`;
-                speak(botReply);
-                chat.scrollTop = chat.scrollHeight;
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                chat.innerHTML += `<p class="bot">নীলা: কিছু সমস্যা হয়েছে! পরে চেষ্টা করো।</p>`;
-            });
-        }
-
-        function speak(text) {
-            let speech = new SpeechSynthesisUtterance();
-            speech.lang = "bn-BD";
-            speech.text = text;
-            speech.volume = 1;
-            speech.rate = 1;
-            speech.pitch = 1;
-            window.speechSynthesis.speak(speech);
-        }
-
-        function startListening() {
-            let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            recognition.lang = "bn-BD";
-
-            recognition.onresult = function(event) {
-                let transcript = event.results[0][0].transcript;
-                document.getElementById("userInput").value = transcript;
-                sendMessage();
-            };
-
-            recognition.start();
-        }
-    </script>
+    <footer>
+        <p>&copy; 2025 My Website. All Rights Reserved.</p>
+    </footer>
 
 </body>
 </html>
