@@ -66,3 +66,45 @@ video {
     width: 80%;
     max-width: 600px;
 }
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+nav ul li {
+    display: inline-block;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+}
+
+nav ul li:hover {
+    transform: scale(1.1);
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: all 0.3s;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: all 0.3s ease-in-out;
+}
+
+nav ul li:hover a::after {
+    width: 100%;
+    left: 0;
+}
