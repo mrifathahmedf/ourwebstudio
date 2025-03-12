@@ -3,58 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>নীলা - Voice Chatbot</title>
+    <title>নীলা - Google Gemini AI Chatbot</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: white;
-            text-align: center;
-        }
-        .chatbox {
-            width: 90%;
-            max-width: 400px;
-            background: #1e1e1e;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-            margin: 20px auto;
-        }
-        .messages {
-            height: 300px;
-            overflow-y: auto;
-            padding: 10px;
-            text-align: left;
-        }
-        .input-box {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: none;
-        }
-        button {
-            padding: 10px 15px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        .user {
-            text-align: right;
-            color: #4CAF50;
-        }
-        .bot {
-            text-align: left;
-            color: #f1c40f;
-        }
+        body { font-family: Arial, sans-serif; background-color: #121212; color: white; text-align: center; }
+        .chatbox { width: 90%; max-width: 400px; background: #1e1e1e; padding: 10px; border-radius: 10px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); margin: 20px auto; }
+        .messages { height: 300px; overflow-y: auto; padding: 10px; text-align: left; }
+        .input-box { width: calc(100% - 20px); padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
+        button { padding: 10px 15px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+        .user { text-align: right; color: #4CAF50; }
+        .bot { text-align: left; color: #f1c40f; }
     </style>
 </head>
 <body>
 
-    <h1>নীলা - তোমার Voice AI বান্ধবী</h1>
+    <h1>নীলা - তোমার AI বান্ধবী</h1>
     <div class="chatbox">
         <div class="messages" id="chat"></div>
         <input type="text" id="userInput" class="input-box" placeholder="নীলাকে কিছু বলো...">
@@ -63,37 +25,33 @@
     </div>
 
     <script>
+        const apiKey = "AIzaSyChmaOQWIG3YQ0cSCLhaHafye9isF-RV0g";  // এখানে তোর Google Gemini API Key বসা
+        const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${apiKey}`;
+
         function sendMessage() {
             let userText = document.getElementById("userInput").value;
             if (userText.trim() === "") return;
 
             let chat = document.getElementById("chat");
-            let userMessage = `<p class="user">তুমি: ${userText}</p>`;
-            chat.innerHTML += userMessage;
+            chat.innerHTML += `<p class="user">তুমি: ${userText}</p>`;
             document.getElementById("userInput").value = "";
 
-            let botReply = getBotReply(userText);
-            let botMessage = `<p class="bot">নীলা: ${botReply}</p>`;
-            chat.innerHTML += botMessage;
-
-            speak(botReply);
-            chat.scrollTop = chat.scrollHeight;
-        }
-
-        function getBotReply(input) {
-            input = input.toLowerCase();
-
-            const responses = {
-                "কেমন আছো": "আমি ভালো আছি! তুমি কেমন আছো?",
-                "তোমার নাম কি": "আমি নীলা, তোমার ভার্চুয়াল বান্ধবী!",
-                "তুমি কি করো": "তোমার সাথে কথা বলা আমার কাজ!",
-                "তুমি বই পড়ো?": "হ্যাঁ! আমি প্রচুর বই পড়ি, তুমিও পড়ো?",
-                "তুমি কি রান্না করতে পারো?": "অবশ্যই! কোন রেসিপি জানতে চাও?",
-                "তুমি কি গেম খেলো?": "হ্যাঁ, আমি গেমিং ভালোবাসি! তোমার প্রিয় গেম কোনটা?",
-                "ভালো থেকো": "তুমিও ভালো থেকো! 😊"
-            };
-
-            return responses[input] || "আমি বুঝতে পারিনি, আরেকবার বলবে?";
+            fetch(apiUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ contents: [{ parts: [{ text: userText }] }] })
+            })
+            .then(response => response.json())
+            .then(data => {
+                let botReply = data.candidates[0]?.content?.parts[0]?.text || "নীলা: আমি বুঝতে পারিনি!";
+                chat.innerHTML += `<p class="bot">নীলা: ${botReply}</p>`;
+                speak(botReply);
+                chat.scrollTop = chat.scrollHeight;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                chat.innerHTML += `<p class="bot">নীলা: কিছু সমস্যা হয়েছে! পরে চেষ্টা করো।</p>`;
+            });
         }
 
         function speak(text) {
