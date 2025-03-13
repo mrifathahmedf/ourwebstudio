@@ -1,112 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Bus Simulator</title>
-    <style>
-        body { margin: 0; overflow: hidden; }
-        canvas { display: block; }
-    </style>
+    <title>রিফাত উচ্চ বিদ্যালয়</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>
+    <header>
+        <h1>রিফাত উচ্চ বিদ্যালয়</h1>
+        <p>ঠিকানা: মনসুরপুর, আটপাড়া, নেত্রকোনা | প্রতিষ্ঠিত: ২০২৫</p>
+    </header>
 
-    <script>
-        // ========== Scene, Camera & Renderer ==========
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+    <nav>
+        <ul>
+            <li><a href="#">হোম</a></li>
+            <li><a href="#">ভর্তি তথ্য</a></li>
+            <li><a href="#">একাডেমিক</a></li>
+            <li><a href="#">শিক্ষকগণ</a></li>
+            <li><a href="#">নোটিশ বোর্ড</a></li>
+            <li><a href="#">যোগাযোগ</a></li>
+        </ul>
+    </nav>
 
-        // ========== Lighting ==========
-        const light = new THREE.DirectionalLight(0xffffff, 1);
-        light.position.set(5, 10, 5);
-        scene.add(light);
+    <section id="about">
+        <h2>আমাদের সম্পর্কে</h2>
+        <p>রিফাত উচ্চ বিদ্যালয় ২০২৫ সালে প্রতিষ্ঠিত হয়। এটি শিক্ষার্থীদের মানসম্মত শিক্ষা প্রদান করে।</p>
+    </section>
 
-        // ========== Load 3D Bus Model ==========
-        const loader = new THREE.GLTFLoader();
-        let bus;
-        loader.load('https://threejs.org/examples/models/gltf/Bus.glb', function(gltf) {
-            bus = gltf.scene;
-            bus.scale.set(2, 2, 2);
-            bus.position.set(0, 0, -5);
-            scene.add(bus);
-        });
+    <footer>
+        <p>যোগাযোগ: ০১৬১৬৪০১০৫৭ | &copy; ২০২৫ রিফাত উচ্চ বিদ্যালয়</p>
+    </footer>
 
-        // ========== Road ==========
-        const roadGeometry = new THREE.PlaneGeometry(50, 10);
-        const roadMaterial = new THREE.MeshStandardMaterial({ color: 0x222222, side: THREE.DoubleSide });
-        const road = new THREE.Mesh(roadGeometry, roadMaterial);
-        road.rotation.x = -Math.PI / 2;
-        scene.add(road);
-
-        // ========== Bus Stop ==========
-        const stopGeometry = new THREE.BoxGeometry(3, 1, 1);
-        const stopMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
-        const busStop = new THREE.Mesh(stopGeometry, stopMaterial);
-        busStop.position.set(0, 0.5, 3);
-        scene.add(busStop);
-
-        // ========== Passengers ==========
-        const passengerGeometry = new THREE.SphereGeometry(0.5, 16, 16);
-        const passengerMaterial = new THREE.MeshStandardMaterial({ color: 0xffff00 });
-        const passengers = [];
-        for (let i = 0; i < 5; i++) {
-            let p = new THREE.Mesh(passengerGeometry, passengerMaterial);
-            p.position.set(Math.random() * 2 - 1, 0.5, Math.random() * 2 + 2);
-            passengers.push(p);
-            scene.add(p);
-        }
-
-        // ========== Controls ==========
-        let speed = 0;
-        let rotation = 0;
-        let stopAtBusStop = false;
-
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "ArrowUp") speed = 0.1;
-            if (event.key === "ArrowDown") speed = -0.1;
-            if (event.key === "ArrowLeft") rotation = 0.05;
-            if (event.key === "ArrowRight") rotation = -0.05;
-        });
-
-        document.addEventListener("keyup", () => {
-            speed = 0;
-            rotation = 0;
-        });
-
-        // ========== Check Bus Stop ==========
-        function checkBusStop() {
-            if (!bus) return;
-            const distance = bus.position.distanceTo(busStop.position);
-            if (distance < 1.5 && !stopAtBusStop) {
-                stopAtBusStop = true;
-                console.log("Passengers on board!");
-                setTimeout(() => {
-                    stopAtBusStop = false;
-                }, 3000);
-            }
-        }
-
-        // ========== Animate ==========
-        function animate() {
-            requestAnimationFrame(animate);
-            if (bus) {
-                if (!stopAtBusStop) {
-                    bus.rotation.y += rotation;
-                    bus.position.x -= Math.sin(bus.rotation.y) * speed;
-                    bus.position.z -= Math.cos(bus.rotation.y) * speed;
-                }
-                camera.position.set(bus.position.x, 3, bus.position.z + 8);
-                camera.lookAt(bus.position);
-            }
-            checkBusStop();
-            renderer.render(scene, camera);
-        }
-        animate();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
