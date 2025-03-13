@@ -1,77 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+    <title>3D Bus Simulator</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+    </style>
 </head>
 <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>
 
-    <header>
-        <h1>Welcome to My Website</h1>
-        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#stories">Stories</a></li>
-                <li><a href="#poetry">Poetries</a></li>
-                <li><a href="#quotes">Quotes</a></li>
-                <li><a href="#islamic">Islamic Messages</a></li>
-                <li><a href="#knowledge">Knowledge Transfer</a></li>
-                <li><a href="#facts">Known & Unknown Facts</a></li>
-                <li><a href="#emotions">Feelings of Emotions</a></li>
-                <li><a href="#smiley">Smiley Face</a></li>
-                <li><a href="#gallery">Photos Album</a></li>
-                <li><a href="#videos">Videos Album</a></li>
-                <li><a href="#about">About Me</a></li>
-            </ul>
-        </nav>
-    </header>
+    <script>
+        // ========== Scene, Camera & Renderer ==========
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-    <section id="home">
-        <h2>Welcome Message</h2>
-        <p>আমার ওয়েবসাইটে তোমাকে স্বাগতম!</p>
-    </section>
+        // ========== Lighting ==========
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(5, 10, 5);
+        scene.add(light);
 
-    <section id="stories"><h2>Stories</h2><p>এখানে গল্প থাকবে...</p></section>
-    <section id="poetry"><h2>Poetries</h2><p>এখানে কবিতা থাকবে...</p></section>
-    <section id="quotes"><h2>Quotes</h2><p>এখানে উক্তি থাকবে...</p></section>
-    <section id="islamic"><h2>Islamic Messages</h2><p>এখানে ইসলামিক বার্তা থাকবে...</p></section>
-    <section id="knowledge"><h2>Knowledge Transfer</h2><p>এখানে জ্ঞান বিনিময় সম্পর্কিত তথ্য থাকবে...</p></section>
-    <section id="facts"><h2>Known & Unknown Facts</h2><p>এখানে জানা-অজানা তথ্য থাকবে...</p></section>
-    <section id="emotions"><h2>Feelings of Emotions</h2><p>এখানে আবেগ অনুভূতির কথা থাকবে...</p></section>
-    <section id="smiley"><h2>Smiley Face</h2><p>এখানে বিভিন্ন স্মাইলি ফেস থাকবে...</p></section>
+        // ========== Load 3D Bus Model ==========
+        const loader = new THREE.GLTFLoader();
+        let bus;
+        loader.load('https://threejs.org/examples/models/gltf/Bus.glb', function(gltf) {
+            bus = gltf.scene;
+            bus.scale.set(2, 2, 2);
+            bus.position.set(0, 0, -5);
+            scene.add(bus);
+        });
 
-    <section id="gallery">
-        <h2>Photos Album</h2>
-        <img src="https://via.placeholder.com/300" alt="Sample Image" onclick="openModal(this.src)">
-    </section>
+        // ========== Road ==========
+        const roadGeometry = new THREE.PlaneGeometry(50, 10);
+        const roadMaterial = new THREE.MeshStandardMaterial({ color: 0x222222, side: THREE.DoubleSide });
+        const road = new THREE.Mesh(roadGeometry, roadMaterial);
+        road.rotation.x = -Math.PI / 2;
+        scene.add(road);
 
-    <section id="videos">
-        <h2>Videos Album</h2>
-        <video controls>
-            <source src="sample.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </section>
+        // ========== Bus Stop ==========
+        const stopGeometry = new THREE.BoxGeometry(3, 1, 1);
+        const stopMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+        const busStop = new THREE.Mesh(stopGeometry, stopMaterial);
+        busStop.position.set(0, 0.5, 3);
+        scene.add(busStop);
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>এখানে নিজের সম্পর্কে তথ্য থাকবে...</p>
-    </section>
+        // ========== Passengers ==========
+        const passengerGeometry = new THREE.SphereGeometry(0.5, 16, 16);
+        const passengerMaterial = new THREE.MeshStandardMaterial({ color: 0xffff00 });
+        const passengers = [];
+        for (let i = 0; i < 5; i++) {
+            let p = new THREE.Mesh(passengerGeometry, passengerMaterial);
+            p.position.set(Math.random() * 2 - 1, 0.5, Math.random() * 2 + 2);
+            passengers.push(p);
+            scene.add(p);
+        }
 
-    <div id="imageModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
-    </div>
+        // ========== Controls ==========
+        let speed = 0;
+        let rotation = 0;
+        let stopAtBusStop = false;
 
-    <footer>
-        <p>&copy; 2025 My Website. All Rights Reserved.</p>
-    </footer>
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowUp") speed = 0.1;
+            if (event.key === "ArrowDown") speed = -0.1;
+            if (event.key === "ArrowLeft") rotation = 0.05;
+            if (event.key === "ArrowRight") rotation = -0.05;
+        });
 
+        document.addEventListener("keyup", () => {
+            speed = 0;
+            rotation = 0;
+        });
+
+        // ========== Check Bus Stop ==========
+        function checkBusStop() {
+            if (!bus) return;
+            const distance = bus.position.distanceTo(busStop.position);
+            if (distance < 1.5 && !stopAtBusStop) {
+                stopAtBusStop = true;
+                console.log("Passengers on board!");
+                setTimeout(() => {
+                    stopAtBusStop = false;
+                }, 3000);
+            }
+        }
+
+        // ========== Animate ==========
+        function animate() {
+            requestAnimationFrame(animate);
+            if (bus) {
+                if (!stopAtBusStop) {
+                    bus.rotation.y += rotation;
+                    bus.position.x -= Math.sin(bus.rotation.y) * speed;
+                    bus.position.z -= Math.cos(bus.rotation.y) * speed;
+                }
+                camera.position.set(bus.position.x, 3, bus.position.z + 8);
+                camera.lookAt(bus.position);
+            }
+            checkBusStop();
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
 </body>
 </html>
