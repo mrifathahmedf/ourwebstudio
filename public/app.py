@@ -1,24 +1,20 @@
-from flask import Flask, request, jsonify, render_template
-from googletrans import Translator
+def chatbot():
+    user_input = input("You: ")
+    
+    if user_input.lower() == "hi":
+        print("Bandhobi: আমি আর তোমার সাথে বান্ধবী সম্পর্ক রাখতে পারবো না।")
+        user_input = input("You: ")
+        
+        if "কেন" in user_input:
+            print("Bandhobi: কিছু না, অনেক দিন বান্ধবী থাকছি। আর না 😒")
+            user_input = input("You: ")
 
-app = Flask(__name__)
-translator = Translator()
+            if "তাহলে" in user_input:
+                print("Bandhobi: বুঝো না, কি চাই 😑")
+                user_input = input("You: ")
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+                if "না" in user_input:
+                    print("Bandhobi: না বুঝলে মুড়ি খাও, আমাকে আর মেসেজ দিয়ো না!")
+                    print("\n**Your girlfriend has permanently blocked you.**")
 
-@app.route('/translate', methods=['POST'])
-def translate_text():
-    data = request.get_json()
-    text = data.get("text")
-    target_lang = data.get("target_lang")
-
-    if not text or not target_lang:
-        return jsonify({"error": "Missing text or target language"}), 400
-
-    translated_text = translator.translate(text, dest=target_lang).text
-    return jsonify({"translated_text": translated_text})
-
-if __name__ == '__main__':
-    app.run(debug=True)
+chatbot()
