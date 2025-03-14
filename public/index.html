@@ -1,69 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HyperCLOVA X Clone</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Translate Website</title>
+    <script>
+        async function translateText() {
+            let text = document.getElementById("text").value;
+            let targetLang = document.getElementById("targetLang").value;
+
+            let response = await fetch('/translate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: text, target_lang: targetLang })
+            });
+
+            let data = await response.json();
+            document.getElementById("result").innerText = data.translated_text || "Error in translation!";
+        }
+    </script>
 </head>
 <body>
-    <header>
-        <h1>HyperCLOVA X</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Benchmark</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Performance</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="banner">
-            <h1>HyperCLOVA X</h1>
-            <p>The future of AI-powered language models</p>
-            <button class="explore-btn">Explore More</button>
-        </section>
-
-        <section class="benchmark">
-            <h2>Benchmark</h2>
-            <p>Our benchmark</p>
-            <div class="benchmark-box">
-                <div class="benchmark-item">
-                    <p>HyperCLOVA X</p>
-                    <span class="score blue">6.11</span>
-                </div>
-                <div class="benchmark-item">
-                    <p>GPT-4</p>
-                    <span class="score">5.11</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="proficiency">
-            <h2>Proficiency in Multiple Languages</h2>
-            <p>
-                HyperCLOVA X is remarkably proficient in Korean, English, Japanese, and Chinese,
-                allowing you to integrate the model into your services in your desired language.
-            </p>
-        </section>
-
-        <section class="translation">
-            <h3>Translation Performance</h3>
-            <p>Type a sentence in English and see the magic of AI:</p>
-            <input type="text" id="userInput" placeholder="Type here...">
-            <button onclick="translateText()">Translate</button>
-            <p class="translated-text" id="translated-text">Translated Text will appear here...</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2025 HyperCLOVA X Clone. All Rights Reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
+    <h1>Simple Translator</h1>
+    <textarea id="text" placeholder="Enter text"></textarea>
+    <select id="targetLang">
+        <option value="en">English</option>
+        <option value="bn">Bengali</option>
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
+        <option value="ar">Arabic</option>
+        <option value="hi">Hindi</option>
+    </select>
+    <button onclick="translateText()">Translate</button>
+    <h3>Translation:</h3>
+    <p id="result"></p>
 </body>
 </html>
