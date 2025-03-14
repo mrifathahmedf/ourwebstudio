@@ -1,46 +1,28 @@
-const chatBox = document.getElementById("chat-box");
-const userInput = document.getElementById("user-input");
+document.addEventListener("DOMContentLoaded", function() {
+    // ওয়েলকাম মেসেজ
+    alert("তোর ফেসবুক-স্টাইল ওয়েবসাইটে স্বাগতম!");
 
-const responses = [
-    "আমি আর তোমার সাথে বান্ধবী সম্পর্ক রাখতে পারবো না।",
-    "কিছু না, অনেক দিন বান্ধবী থাকছি । আর না 😒",
-    "বুঝো না, কি চাই 😑",
-    "না বুঝলে মুড়ি খাও, আমাকে আর মেসেজ দিয়ো না!",
-    "Your বান্ধবী has permanently blocked you."
-];
+    // সার্চ বারে ফোকাস করলে আইকন কালার পরিবর্তন হবে
+    const searchInput = document.querySelector(".search-box input");
+    const searchIcon = document.querySelector(".search-box i");
 
-let step = 0;
+    searchBox.addEventListener("focusin", function() {
+        searchBox.style.border = "2px solid #3578e5";
+    });
 
-function sendMessage() {
-    let message = userInput.value.trim();
-    if (message === "") return;
-    
-    addMessage("You", message);
-    userInput.value = "";
+    searchBox.addEventListener("focusout", function() {
+        searchBox.style.border = "none";
+    });
 
-    setTimeout(() => {
-        if (step < responses.length) {
-            addMessage("বান্ধবী", responses[step]);
-            speak(responses[step]); // Voice system
-            step++;
-        }
-    }, 1000);
-}
+    // নোটিফিকেশন বাটনে ক্লিক করলে এলার্ট দেখানো হবে
+    document.querySelector(".fa-bell").addEventListener("click", function() {
+        alert("তোর কোনো নতুন নোটিফিকেশন নেই!");
+    });
 
-function addMessage(sender, message) {
-    chatBox.innerHTML += `<p><strong>${sender}:</strong> ${message}</p>`;
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function handleKeyPress(event) {
-    if (event.key === "Enter") {
-        sendMessage();
-    }
-}
-
-// Voice System
-function speak(text) {
-    let speech = new SpeechSynthesisUtterance(text);
-    speech.lang = "bn-BD"; // Bangla voice
-    window.speechSynthesis.speak(speech);
-}
+    // লাইক বাটনে ক্লিক করলে কালার পরিবর্তন হবে
+    document.querySelectorAll(".post-actions button").forEach(button => {
+        button.addEventListener("click", function() {
+            this.classList.toggle("active");
+        });
+    });
+});
