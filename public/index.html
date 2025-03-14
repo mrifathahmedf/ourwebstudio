@@ -5,17 +5,47 @@
 <script src="script.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>বান্ধবী চ্যাটবট</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Facebook Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-box" id="chat-box">
-            <p><strong>বান্ধবী:</strong> আমাকে কিছু বলো...</p>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">ফেসবুক</div>
+        <div class="search-box">
+            <input type="text" placeholder="খুঁজুন...">
+            <i class="fas fa-search"></i>
         </div>
-        <input type="text" id="user-input" placeholder="Type here..." onkeypress="handleKeyPress(event)">
-        <button onclick="sendMessage()">Send</button>
+        <ul class="nav-links">
+            <li><a href="#"><i class="fas fa-home"></i></a></li>
+            <li><a href="#"><i class="fas fa-user-friends"></i></a></li>
+            <li><a href="#"><i class="fas fa-bell"></i></a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i></a></li>
+            <li><a href="#"><i class="fas fa-user"></i></a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="post">
+            <div class="post-header">
+                <img src="profile.jpg" class="profile-pic">
+                <div class="post-info">
+                    <h4>রিফাত</h4>
+                    <p>১ ঘন্টা আগে</p>
+                </div>
+            </div>
+            <p>এটি একটি ফেসবুকের মতো ক্লোন ওয়েবসাইট। কেমন লাগছে?</p>
+            <img src="post.jpg" class="post-image">
+            <div class="post-actions">
+                <button><i class="fas fa-thumbs-up"></i> লাইক</button>
+                <button><i class="fas fa-comment"></i> মন্তব্য</button>
+                <button><i class="fas fa-share"></i> শেয়ার</button>
+            </div>
+        </div>
     </div>
-    <script src="script.js"></script>
+
 </body>
 </html>
