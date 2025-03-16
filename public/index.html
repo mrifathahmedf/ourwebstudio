@@ -5,47 +5,54 @@
 <script src="script.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook Clone</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Islamic Website</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo">ফেসবুক</div>
-        <div class="search-box">
-            <input type="text" placeholder="খুঁজুন...">
-            <i class="fas fa-search"></i>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#"><i class="fas fa-home"></i></a></li>
-            <li><a href="#"><i class="fas fa-user-friends"></i></a></li>
-            <li><a href="#"><i class="fas fa-bell"></i></a></li>
-            <li><a href="#"><i class="fas fa-envelope"></i></a></li>
-            <li><a href="#"><i class="fas fa-user"></i></a></li>
-        </ul>
-    </nav>
+    <header>
+        <h1>ইসলামিক ওয়েবসাইট</h1>
+        <nav>
+            <ul>
+                <li><a href="#">হোম</a></li>
+                <li><a href="#login">লগইন</a></li>
+                <li><a href="#blog">ব্লগ</a></li>
+                <li><a href="#calendar">হিজরি ক্যালেন্ডার</a></li>
+                <li><a href="#azan">লাইভ আজান</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="post">
-            <div class="post-header">
-                <img src="profile.jpg" class="profile-pic">
-                <div class="post-info">
-                    <h4>রিফাত</h4>
-                    <p>১ ঘন্টা আগে</p>
-                </div>
-            </div>
-            <p>এটি একটি ফেসবুকের মতো ক্লোন ওয়েবসাইট। কেমন লাগছে?</p>
-            <img src="post.jpg" class="post-image">
-            <div class="post-actions">
-                <button><i class="fas fa-thumbs-up"></i> লাইক</button>
-                <button><i class="fas fa-comment"></i> মন্তব্য</button>
-                <button><i class="fas fa-share"></i> শেয়ার</button>
-            </div>
-        </div>
-    </div>
+    <section id="login">
+        <h3>লগইন করুন</h3>
+        <input type="email" id="email" placeholder="ইমেইল লিখুন">
+        <input type="password" id="password" placeholder="পাসওয়ার্ড লিখুন">
+        <button onclick="loginUser()">লগইন</button>
+    </section>
+
+    <section id="blog">
+        <h3>ইসলামিক ব্লগ</h3>
+        <input type="text" id="blog-title" placeholder="ব্লগের শিরোনাম">
+        <textarea id="blog-content" placeholder="আপনার ব্লগ লিখুন"></textarea>
+        <button onclick="postBlog()">পোস্ট করুন</button>
+        <div id="blog-list"></div>
+    </section>
+
+    <section id="calendar">
+        <h3>আজকের হিজরি তারিখ</h3>
+        <p id="hijri-date">লোড হচ্ছে...</p>
+    </section>
+
+    <section id="azan">
+        <h3>লাইভ আজান শুনুন</h3>
+        <button onclick="playAzan()">আজান শুনুন</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Islamic Guide | সকল অধিকার সংরক্ষিত</p>
+    </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
