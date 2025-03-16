@@ -1,7 +1,6 @@
 /* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
 
-/* Light/Dark Mode */
 body {
     background: #f0f2f5;
     color: #000;
@@ -13,25 +12,54 @@ body.dark {
     color: #e4e6eb;
 }
 
+/* Navbar */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #3b5998;
     padding: 10px 20px;
+    background: #242526;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: lowercase;
     color: white;
 }
 
-header input {
-    padding: 5px;
-    width: 50%;
-    border: none;
-    border-radius: 5px;
+.icons {
+    display: flex;
+    gap: 20px;
 }
 
+.icon {
+    position: relative;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Notification Badge */
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 50%;
+}
+
+/* Sidebar */
 .container {
     display: flex;
-    margin: 20px;
+    margin: 70px 20px 20px 20px;
 }
 
 .sidebar {
@@ -51,6 +79,7 @@ main {
     margin-left: 20px;
 }
 
+/* Post Box */
 .post-box {
     background: white;
     padding: 20px;
