@@ -7,22 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Islamic Social</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
     <!-- Facebook Style Navbar -->
     <header>
-        <div class="logo">📖 Islamic Social</div>
-        <input type="text" placeholder="🔍 সার্চ করুন...">
-        <button onclick="toggleDarkMode()">🌙</button>
+        <div class="logo">facebook</div>
+        <div class="icons">
+            <span class="icon"><i class="fas fa-home"></i><span class="badge">15+</span></span>
+            <span class="icon"><i class="fas fa-user-friends"></i></span>
+            <span class="icon"><i class="fab fa-facebook-messenger"></i></span>
+            <span class="icon"><i class="fas fa-bell"></i></span>
+            <span class="icon"><i class="fas fa-tv"></i></span>
+            <span class="icon"><i class="fas fa-chart-bar"></i></span>
+            <button onclick="toggleDarkMode()">🌙</button>
+        </div>
     </header>
 
     <div class="container">
-        <!-- Sidebar (Facebook Style) -->
+        <!-- Sidebar -->
         <aside class="sidebar">
             <ul>
                 <li>🏠 হোম</li>
-                <li>📝 আমার পোস্ট</li>
+                <li>📝 ইসলামিক পোস্ট</li>
                 <li>📆 হিজরি ক্যালেন্ডার</li>
                 <li>📢 লাইভ আজান</li>
                 <li>⚙️ সেটিংস</li>
@@ -32,7 +40,7 @@
         <!-- Main Content (Islamic Feed) -->
         <main>
             <div class="post-box">
-                <textarea id="post-content" placeholder="আপনার ইসলামিক জ্ঞান শেয়ার করুন..."></textarea>
+                <textarea id="post-content" placeholder="আপনার ইসলামিক পোস্ট লিখুন..."></textarea>
                 <button onclick="postStatus()">পোস্ট করুন</button>
             </div>
 
