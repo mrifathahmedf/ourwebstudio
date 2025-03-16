@@ -5,54 +5,41 @@
 <script src="script.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Website</title>
+    <title>Islamic Social</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Facebook Style Navbar -->
     <header>
-        <h1>ইসলামিক ওয়েবসাইট</h1>
-        <nav>
-            <ul>
-                <li><a href="#">হোম</a></li>
-                <li><a href="#login">লগইন</a></li>
-                <li><a href="#blog">ব্লগ</a></li>
-                <li><a href="#calendar">হিজরি ক্যালেন্ডার</a></li>
-                <li><a href="#azan">লাইভ আজান</a></li>
-            </ul>
-        </nav>
+        <div class="logo">📖 Islamic Social</div>
+        <input type="text" placeholder="🔍 সার্চ করুন...">
+        <button onclick="toggleDarkMode()">🌙</button>
     </header>
 
-    <section id="login">
-        <h3>লগইন করুন</h3>
-        <input type="email" id="email" placeholder="ইমেইল লিখুন">
-        <input type="password" id="password" placeholder="পাসওয়ার্ড লিখুন">
-        <button onclick="loginUser()">লগইন</button>
-    </section>
+    <div class="container">
+        <!-- Sidebar (Facebook Style) -->
+        <aside class="sidebar">
+            <ul>
+                <li>🏠 হোম</li>
+                <li>📝 আমার পোস্ট</li>
+                <li>📆 হিজরি ক্যালেন্ডার</li>
+                <li>📢 লাইভ আজান</li>
+                <li>⚙️ সেটিংস</li>
+            </ul>
+        </aside>
 
-    <section id="blog">
-        <h3>ইসলামিক ব্লগ</h3>
-        <input type="text" id="blog-title" placeholder="ব্লগের শিরোনাম">
-        <textarea id="blog-content" placeholder="আপনার ব্লগ লিখুন"></textarea>
-        <button onclick="postBlog()">পোস্ট করুন</button>
-        <div id="blog-list"></div>
-    </section>
+        <!-- Main Content (Islamic Feed) -->
+        <main>
+            <div class="post-box">
+                <textarea id="post-content" placeholder="আপনার ইসলামিক জ্ঞান শেয়ার করুন..."></textarea>
+                <button onclick="postStatus()">পোস্ট করুন</button>
+            </div>
 
-    <section id="calendar">
-        <h3>আজকের হিজরি তারিখ</h3>
-        <p id="hijri-date">লোড হচ্ছে...</p>
-    </section>
-
-    <section id="azan">
-        <h3>লাইভ আজান শুনুন</h3>
-        <button onclick="playAzan()">আজান শুনুন</button>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Islamic Guide | সকল অধিকার সংরক্ষিত</p>
-    </footer>
+            <div id="feed"></div>
+        </main>
+    </div>
 
     <script src="script.js"></script>
-
 </body>
 </html>
