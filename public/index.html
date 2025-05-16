@@ -2,45 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Dairy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Inner Dairy</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">My Dairy</div>
-    <nav class="nav-icons">
-      <a href="#home" title="Home"><i class="fas fa-home"></i></a>
-      <a href="#video" title="Videos"><i class="fas fa-tv"></i></a>
-      <a href="#groups" title="Groups"><i class="fas fa-users"></i></a>
-      <a href="#marketplace" title="Marketplace"><i class="fas fa-chart-bar"></i></a>
-      <a href="#profile" title="Profile"><i class="fas fa-user"></i></a>
-    </nav>
-  </header>
+  <div class="navbar">
+    <h1>My Inner Dairy</h1>
+    <div class="icons">
+      <button onclick="toggleSection('diary1')">ডায়েরী ১</button>
+      <button onclick="toggleSection('diary2')">ডায়েরী ২</button>
+      <button onclick="toggleSection('diary3')">ডায়েরী ৩</button>
+      <button onclick="toggleSection('diary4')">ডায়েরী ৪</button>
+      <button onclick="toggleSection('diary5')">ডায়েরী ৫</button>
+    </div>
+  </div>
 
-  <main class="content">
-    <section id="home">
-      <h2>ডায়েরী ১</h2>
-      <p>এখানে তোর প্রথম ডায়েরির কন্টেন্ট থাকবে।</p>
-    </section>
-    <section id="video">
-      <h2>ডায়েরী ২</h2>
-      <p>এখানে তোর দ্বিতীয় ডায়েরির কন্টেন্ট থাকবে।</p>
-    </section>
-    <section id="groups">
-      <h2>ডায়েরী ৩</h2>
-      <p>এখানে তোর তৃতীয় ডায়েরির কন্টেন্ট থাকবে।</p>
-    </section>
-    <section id="marketplace">
-      <h2>ডায়েরী ৪</h2>
-      <p>এখানে তোর চতুর্থ ডায়েরির কন্টেন্ট থাকবে।</p>
-    </section>
-    <section id="profile">
-      <h2>ডায়েরী ৫</h2>
-      <p>এখানে তোর পঞ্চম ডায়েরির কন্টেন্ট থাকবে।</p>
-    </section>
-  </main>
+  <div class="content">
+    <div id="diary1" class="diary">ডায়েরী ১: আজকে মনটা খুব বিষণ্ণ...</div>
+    <div id="diary2" class="diary">ডায়েরী ২: আজকে এক কাপ কফিতে অতীত ঘুরে এলো...</div>
+    <div id="diary3" class="diary">ডায়েরী ৩: একটা পুরোনো ছবি দেখে চোখ ভিজে উঠলো...</div>
+    <div id="diary4" class="diary">ডায়েরী ৪: নতুন গান লিখলাম আজ...</div>
+    <div id="diary5" class="diary">
+      <p>ডায়েরী ৫: আজকের ছবি ও ভিডিও:</p>
+      <img src="your-image.jpg" alt="Photo" width="200" />
+      <video controls width="250">
+        <source src="your-video.mp4" type="video/mp4" />
+        তোমার ব্রাউজার ভিডিও প্লে করতে পারছে না।
+      </video>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
