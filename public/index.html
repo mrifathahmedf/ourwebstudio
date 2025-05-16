@@ -1,53 +1,47 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Social</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dairy</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
+  <header class="navbar">
+    <div class="logo">My Dairy</div>
+    <nav class="nav-icons">
+      <a href="#home" title="Home"><i class="fas fa-home"></i></a>
+      <a href="#video" title="Videos"><i class="fas fa-tv"></i></a>
+      <a href="#groups" title="Groups"><i class="fas fa-users"></i></a>
+      <a href="#marketplace" title="Marketplace"><i class="fas fa-chart-bar"></i></a>
+      <a href="#profile" title="Profile"><i class="fas fa-user"></i></a>
+    </nav>
+  </header>
 
-    <!-- Facebook Style Navbar -->
-    <header>
-        <div class="logo">facebook</div>
-        <div class="icons">
-            <span class="icon"><i class="fas fa-home"></i><span class="badge">15+</span></span>
-            <span class="icon"><i class="fas fa-user-friends"></i></span>
-            <span class="icon"><i class="fab fa-facebook-messenger"></i></span>
-            <span class="icon"><i class="fas fa-bell"></i></span>
-            <span class="icon"><i class="fas fa-tv"></i></span>
-            <span class="icon"><i class="fas fa-chart-bar"></i></span>
-            <button onclick="toggleDarkMode()">🌙</button>
-        </div>
-    </header>
+  <main class="content">
+    <section id="home">
+      <h2>ডায়েরী ১</h2>
+      <p>এখানে তোর প্রথম ডায়েরির কন্টেন্ট থাকবে।</p>
+    </section>
+    <section id="video">
+      <h2>ডায়েরী ২</h2>
+      <p>এখানে তোর দ্বিতীয় ডায়েরির কন্টেন্ট থাকবে।</p>
+    </section>
+    <section id="groups">
+      <h2>ডায়েরী ৩</h2>
+      <p>এখানে তোর তৃতীয় ডায়েরির কন্টেন্ট থাকবে।</p>
+    </section>
+    <section id="marketplace">
+      <h2>ডায়েরী ৪</h2>
+      <p>এখানে তোর চতুর্থ ডায়েরির কন্টেন্ট থাকবে।</p>
+    </section>
+    <section id="profile">
+      <h2>ডায়েরী ৫</h2>
+      <p>এখানে তোর পঞ্চম ডায়েরির কন্টেন্ট থাকবে।</p>
+    </section>
+  </main>
 
-    <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <ul>
-                <li>🏠 হোম</li>
-                <li>📝 ইসলামিক পোস্ট</li>
-                <li>📆 হিজরি ক্যালেন্ডার</li>
-                <li>📢 লাইভ আজান</li>
-                <li>⚙️ সেটিংস</li>
-            </ul>
-        </aside>
-
-        <!-- Main Content (Islamic Feed) -->
-        <main>
-            <div class="post-box">
-                <textarea id="post-content" placeholder="আপনার ইসলামিক পোস্ট লিখুন..."></textarea>
-                <button onclick="postStatus()">পোস্ট করুন</button>
-            </div>
-
-            <div id="feed"></div>
-        </main>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
