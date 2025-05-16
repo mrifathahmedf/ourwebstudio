@@ -1,115 +1,47 @@
-/* Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-
 body {
-    background: #f0f2f5;
-    color: #000;
-    transition: 0.3s;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #18191a;
+  color: #e4e6eb;
 }
 
-body.dark {
-    background: #18191a;
-    color: #e4e6eb;
-}
-
-/* Navbar */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: #242526;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #242526;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    text-transform: lowercase;
-    color: white;
+  font-size: 24px;
+  font-weight: bold;
+  color: #1877f2;
 }
 
-.icons {
-    display: flex;
-    gap: 20px;
+.nav-icons a {
+  color: #b0b3b8;
+  margin: 0 10px;
+  font-size: 20px;
+  transition: color 0.3s ease;
 }
 
-.icon {
-    position: relative;
-    font-size: 20px;
-    cursor: pointer;
-    color: white;
+.nav-icons a:hover {
+  color: #ffffff;
 }
 
-/* Notification Badge */
-.badge {
-    position: absolute;
-    top: -5px;
-    right: -10px;
-    background: red;
-    color: white;
-    font-size: 12px;
-    padding: 3px 6px;
-    border-radius: 50%;
+.content {
+  padding: 20px;
 }
 
-/* Sidebar */
-.container {
-    display: flex;
-    margin: 70px 20px 20px 20px;
+section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #3a3b3c;
+  border-radius: 10px;
 }
 
-.sidebar {
-    width: 20%;
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: 100vh;
-}
-
-.sidebar ul { list-style: none; }
-.sidebar ul li { padding: 10px; cursor: pointer; }
-.sidebar ul li:hover { background: #ddd; }
-
-main {
-    width: 75%;
-    margin-left: 20px;
-}
-
-/* Post Box */
-.post-box {
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-.post-box textarea {
-    width: 100%;
-    height: 80px;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
-
-button {
-    background: #3b5998;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#feed {
-    margin-top: 20px;
-}
-
-.post {
-    background: white;
-    padding: 15px;
-    margin: 10px 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+h2 {
+  color: #ffffff;
 }
