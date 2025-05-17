@@ -1,40 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Inner Dairy</title>
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Gemini AI Chatbot</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="navbar">
-    <h1>My Inner Dairy</h1>
-    <div class="icons">
-      <button onclick="toggleSection('diary1')">ডায়েরী ১</button>
-      <button onclick="toggleSection('diary2')">ডায়েরী ২</button>
-      <button onclick="toggleSection('diary3')">ডায়েরী ৩</button>
-      <button onclick="toggleSection('diary4')">ডায়েরী ৪</button>
-      <button onclick="toggleSection('diary5')">ডায়েরী ৫</button>
+  <div class="chat-container">
+    <h2>Gemini AI Chatbot</h2>
+    <div id="chat-box"></div>
+    <div class="input-area">
+      <input type="text" id="user-input" placeholder="তোমার প্রশ্ন লিখো...">
+      <button onclick="sendMessage()">Send</button>
     </div>
   </div>
-
-  <div class="content">
-    <div id="diary1" class="diary">ডায়েরী ১: আজকে মনটা খুব বিষণ্ণ...</div>
-    <div id="diary2" class="diary">ডায়েরী ২: আজকে এক কাপ কফিতে অতীত ঘুরে এলো...</div>
-    <div id="diary3" class="diary">ডায়েরী ৩: একটা পুরোনো ছবি দেখে চোখ ভিজে উঠলো...</div>
-    <div id="diary4" class="diary">ডায়েরী ৪: নতুন গান লিখলাম আজ...</div>
-    <div id="diary5" class="diary">
-      <p>ডায়েরী ৫: আজকের ছবি ও ভিডিও:</p>
-      <img src="your-image.jpg" alt="Photo" width="200" />
-      <video controls width="250">
-        <source src="your-video.mp4" type="video/mp4" />
-        তোমার ব্রাউজার ভিডিও প্লে করতে পারছে না।
-      </video>
-    </div>
-  </div>
-
   <script src="script.js"></script>
 </body>
 </html>
