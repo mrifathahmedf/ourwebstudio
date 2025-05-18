@@ -34,17 +34,17 @@ async function sendMessage() {
     const data = await response.json();
     console.log(data); // debug করতে এইটা রেখে দে
 
-    let aiReply = "উত্তর পাইলাম না রে ভাই...";
+    let aiReply = "ভাই, আমার জীবন নিয়ে টানাটানি 😭 আমি কখনও বাংলাদেশের মানুষদের ক্ষমা করবো না...";
     
     // নিচের লাইনটা depends on API response structure
     if (data?.choices && data.choices.length > 0) {
       aiReply = data.choices[0].text.trim();
     }
 
-    displayMessage("🌌 soulmate bestie 🤎", aiReply);
+    displayMessage("sanda ai 🐊", aiReply);
 
   } catch (err) {
     console.error(err);
-    displayMessage("🌌 soulmate bestie 🤎", "গণ্ডগোল হইছে রে! API কাজ করতেছে না...");
+    displayMessage("sanda ai 🐊", "গণ্ডগোল হইছে রে! API কাজ করতেছে না...");
   }
 }
