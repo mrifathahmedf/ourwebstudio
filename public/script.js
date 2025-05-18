@@ -1,12 +1,20 @@
-const API_KEY = "c65f0d5a-9e89-4767-be77-00a5eca31472"; // <<== এখানে বসাবি API Key
-const ENDPOINT = "https://api.sambanova.ai/v1/chat/completions"; // <<== এখানে বসাবি Endpoint
+const API_KEY = "c65f0d5a-9e89-4767-be77-00a5eca31472";  // এখানে তোর API Key বসাবি
+const ENDPOINT = "https://api.sambanova.ai/v1/chat/completions";  // ঠিক URL
+
+function displayMessage(sender, message) {
+  const chatLog = document.getElementById("chat-log");
+  const messageElement = document.createElement("div");
+  messageElement.innerHTML = `<strong>${sender}</strong>: ${message}`;
+  chatLog.appendChild(messageElement);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
 
 async function sendMessage() {
   const inputField = document.getElementById("user-input");
   const userMessage = inputField.value.trim();
   if (!userMessage) return;
 
-  displayMessage("তুই:", userMessage);
+  displayMessage("তুই", userMessage);
   inputField.value = "";
 
   try {
@@ -24,19 +32,19 @@ async function sendMessage() {
     });
 
     const data = await response.json();
-    const aiReply = data?.choices?.[0]?.text || "উত্তর পাইলাম না রে ভাই...";
-    displayMessage("🌌ᦓꪮꪊꪶꪑꪖꪻꫀ:", aiReply.trim());
+    console.log(data); // debug করতে এইটা রেখে দে
+
+    let aiReply = "উত্তর পাইলাম না রে ভাই...";
+    
+    // নিচের লাইনটা depends on API response structure
+    if (data?.choices && data.choices.length > 0) {
+      aiReply = data.choices[0].text.trim();
+    }
+
+    displayMessage("🌌 soulmate bestie 🤎", aiReply);
 
   } catch (err) {
     console.error(err);
-    displayMessage("🌌ᦓꪮꪊꪶꪑꪖꪻꫀ:", "গণ্ডগোল হইছে রে! আবার চেষ্টা কর।");
+    displayMessage("🌌 soulmate bestie 🤎", "গণ্ডগোল হইছে রে! API কাজ করতেছে না...");
   }
-}
-
-function displayMessage(sender, message) {
-  const chatBox = document.getElementById("chat-box");
-  const messageElem = document.createElement("div");
-  messageElem.innerHTML = `<strong>${sender}</strong> ${message}`;
-  chatBox.appendChild(messageElem);
-  chatBox.scrollTop = chatBox.scrollHeight;
 }
