@@ -1,45 +1,42 @@
-const API_KEY = "AIzaSyBhkKIWaKdrr4UzLRXJFo7mz_5WFbGwioM"; // এখানে তোর API KEY বসাবি
+const API_KEY = "c65f0d5a-9e89-4767-be77-00a5eca31472"; // <<== এখানে বসাবি API Key
+const ENDPOINT = "https://api.sambanova.ai/v1/chat/completions"; // <<== এখানে বসাবি Endpoint
 
 async function sendMessage() {
   const inputField = document.getElementById("user-input");
-  const userText = inputField.value.trim();
-  if (!userText) return;
+  const userMessage = inputField.value.trim();
+  if (!userMessage) return;
 
-  appendMessage("তুই", userText);
+  displayMessage("তুই:", userMessage);
   inputField.value = "";
 
-  appendMessage("Gemini", "একটু ভাবছি...");
+  try {
+    const response = await fetch(ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${c65f0d5a-9e89-4767-be77-00a5eca31472}`
+      },
+      body: JSON.stringify({
+        prompt: userMessage,
+        max_tokens: 100,
+        temperature: 0.7
+      })
+    });
 
-  const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + API_KEY, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: userText }] }]
-    })
-  });
+    const data = await response.json();
+    const aiReply = data?.choices?.[0]?.text || "উত্তর পাইলাম না রে ভাই...";
+    displayMessage("🌌ᦓꪮꪊꪶꪑꪖꪻꫀ:", aiReply.trim());
 
-  const data = await response.json();
-  const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "উত্তর আসলো না, আবার চেষ্টা কর।";
-
-  // Remove "thinking" message and add actual reply
-  removeLastMessage();
-  appendMessage("Gemini", reply);
-}
-
-function appendMessage(sender, message) {
-  const chatBox = document.getElementById("chat-box");
-  const msg = document.createElement("div");
-  msg.innerHTML = `<strong>${sender}:</strong> ${message}`;
-  msg.style.margin = "10px 0";
-  chatBox.appendChild(msg);
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function removeLastMessage() {
-  const chatBox = document.getElementById("chat-box");
-  if (chatBox.lastChild) {
-    chatBox.removeChild(chatBox.lastChild);
+  } catch (err) {
+    console.error(err);
+    displayMessage("🌌ᦓꪮꪊꪶꪑꪖꪻꫀ:", "গণ্ডগোল হইছে রে! আবার চেষ্টা কর।");
   }
+}
+
+function displayMessage(sender, message) {
+  const chatBox = document.getElementById("chat-box");
+  const messageElem = document.createElement("div");
+  messageElem.innerHTML = `<strong>${sender}</strong> ${message}`;
+  chatBox.appendChild(messageElem);
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
