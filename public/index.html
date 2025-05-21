@@ -1,20 +1,29 @@
-<!DOCTYPE html>
-<html lang="bn">
+<!DOCTYPE html><html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>sanda ai 🐊 </title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Personal Dairy</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="chat-container">
-    <h1>sanda ai 🐊</h1>
-    <div id="chat-log" class="chat-log"></div>
-    <div class="input-area">
-      <input type="text" id="user-input" placeholder="কফিল, তুই কিছু বলবি..." />
-      <button onclick="sendMessage()">পাঠা</button>
+  <header>
+    <div class="left-title">My Personal Dairy</div>
+    <div class="right-icon">
+      <img src="messenger-icon.png" alt="Messenger" />
     </div>
-  </div>
-  <script src="script.js"></script>
-</body>
+  </header>  <nav class="menu">
+    <button class="tab-button" onclick="toggleContent('diary1')">ডায়েরী ১</button>
+    <button class="tab-button" onclick="toggleContent('diary2')">ডায়েরী ২</button>
+    <button class="tab-button" onclick="toggleContent('diary3')">ডায়েরী ৩</button>
+    <button class="tab-button" onclick="toggleContent('diary4')">ডায়েরী ৪</button>
+    <button class="tab-button" onclick="toggleContent('diary5')">ডায়েরী ৫</button>
+    <button class="tab-button" onclick="toggleContent('diary6')">ডায়েরী ৬</button>
+  </nav>  <main>
+    <section id="diary1" class="content-section">এইখানে থাকবে ডায়েরী ১ এর কনটেন্ট।</section>
+    <section id="diary2" class="content-section">এইখানে থাকবে ডায়েরী ২ এর কনটেন্ট।</section>
+    <section id="diary3" class="content-section">এইখানে থাকবে ডায়েরী ৩ এর কনটেন্ট।</section>
+    <section id="diary4" class="content-section">এইখানে থাকবে ডায়েরী ৪ এর কনটেন্ট।</section>
+    <section id="diary5" class="content-section">এইখানে থাকবে ডায়েরী ৫ এর কনটেন্ট।</section>
+    <section id="diary6" class="content-section">এইখানে থাকবে ডায়েরী ৬ এর কনটেন্ট।</section>
+  </main>  <script src="script.js"></script></body>
 </html>
