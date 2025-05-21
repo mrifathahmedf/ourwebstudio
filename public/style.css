@@ -1,53 +1,56 @@
 body {
-  background-color: #111;
-  color: #fff;
-  font-family: 'Arial', sans-serif;
   margin: 0;
-  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f2f5;
 }
 
-.chat-container {
-  width: 90%;
-  max-width: 500px;
-  margin: 50px auto;
-  background-color: #1e1e2f;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #444;
-}
-
-h1 {
-  text-align: center;
-  font-size: 1.8em;
-  margin-bottom: 20px;
-}
-
-.chat-log {
-  height: 300px;
-  overflow-y: auto;
-  background: #2c2c3a;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.input-area {
-  display: flex;
-  gap: 10px;
-}
-
-input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-}
-
-button {
-  padding: 10px 15px;
-  background-color: #8a2be2;
+header {
+  background-color: #242526;
   color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.left-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.right-icon img {
+  height: 24px;
+  width: 24px;
+}
+
+.menu {
+  background-color: white;
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  justify-content: start;
+  overflow-x: auto;
+}
+
+.tab-button {
+  background-color: #e4e6eb;
   border: none;
+  padding: 8px 12px;
   border-radius: 5px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tab-button:hover {
+  background-color: #d8dadf;
+}
+
+.content-section {
+  display: none;
+  background-color: white;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
